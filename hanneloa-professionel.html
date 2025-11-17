@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#C9B896">
+    <title>Yogarummet IndreBy - Velvære og Indre Ro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #C9B896;
+            --secondary: #8B7355;
+            --background: #F6E5D5;
+            --text: #2C2416;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 85vh;
+            min-height: 600px;
+            background-color: #F6E5D5;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent),
+                              url('../IMAGES/yoga-silhuet.jpg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 100;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .hero-content {
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px 24px;
+            width: 280px;
+            height: 200px;
+            margin: 0 auto;
+            box-shadow: 0 8px 24px rgba(44, 36, 22, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(44, 36, 22, 0.15);
+        }
+
+        .card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            border-radius: 50%;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(201, 184, 150, 0.3);
+        }
+
+        .card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--secondary);
+            font-weight: 400;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 -4px 16px rgba(44, 36, 22, 0.1);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 12px 0;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+        }
+
+        .nav-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                margin-top: -40px;
+            }
+
+            .container {
+                padding: 30px 16px;
+            }
+        }
+
+        /* Additional Styling */
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin: 60px 0 40px 0;
+            color: var(--text);
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Screen Management */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Content Pages */
+        .page-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px 100px 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--secondary);
+        }
+
+        .content-section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(44, 36, 22, 0.08);
+        }
+
+        .content-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .content-section p, .content-section ul {
+            line-height: 1.8;
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .content-section li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .price {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 12px;
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            color: var(--secondary);
+        }
+
+        /* Exercise styling */
+        .exercise {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(44, 36, 22, 0.08);
+            border-top: 3px solid var(--primary);
+            position: relative;
+        }
+
+        .exercise h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .exercise-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(201, 184, 150, 0.1);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .exercise-meta span {
+            display: inline-block;
+        }
+
+        .exercise-meta strong {
+            color: var(--text);
+        }
+
+        .exercise h4 {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .exercise ol, .exercise ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .exercise-divider {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 40px 0;
+        }
+
+        /* Three-dot menu */
+        .section-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            cursor: pointer;
+            padding: 8px;
+            line-height: 1;
+            transition: color 0.3s ease;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .menu-button:hover {
+            color: var(--primary);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 35px;
+            right: 0;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(44, 36, 22, 0.15);
+            min-width: 180px;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 16px;
+            color: var(--text);
+            text-decoration: none;
+            transition: background 0.2s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(201, 184, 150, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Position relative for content sections with menus */
+        .content-section {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <!-- HOME SCREEN -->
+    <div id="home" class="screen active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 onclick="navigateTo('home')" style="cursor: pointer;">Yogarummet IndreBy</h1>
+                <p>Tag et skridt mod velvære og indre ro. Namasté.</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="container">
+            <!-- Cards Grid -->
+            <div class="cards-grid">
+                <div class="card" onclick="navigateTo('hold')">
+                    <div class="card-number">1</div>
+                    <h3>Ugentlige Hold</h3>
+                    <p>Dagtimer og aftentimer i små klasser</p>
+                </div>
+
+                <div class="card" onclick="navigateTo('kurser')">
+                    <div class="card-number">2</div>
+                    <h3>Kurser & Workshops</h3>
+                    <p>Yoga i Dybden og temaworkshops</p>
+                </div>
+
+                <div class="card" onclick="navigateTo('retreats')">
+                    <div class="card-number">3</div>
+                    <h3>Retreats</h3>
+                    <p>Forårsretreat og urban retreat</p>
+                </div>
+
+                <div class="card" onclick="navigateTo('bibliotek')">
+                    <div class="card-number">4</div>
+                    <h3>Øvelsesbibliotek</h3>
+                    <p>Yin, Restorativ, Hatha, Pranayama</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UGENTLIGE HOLD SCREEN -->
+    <div id="hold" class="screen">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 onclick="navigateTo('home')" style="cursor: pointer;">Yogarummet IndreBy</h1>
+                <p>Små klasser i hjertet af København</p>
+            </div>
+        </section>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">Ugentlige Hold</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="content-section">
+                <button class="menu-button" onclick="toggleMenu(event, 'menu-dagtimer')">⋮</button>
+                <div id="menu-dagtimer" class="dropdown-menu">
+                    <button class="dropdown-item" onclick="shareSection('Dagtimer')">Del</button>
+                    <button class="dropdown-item" onclick="saveSection('Dagtimer')">Gem</button>
+                    <button class="dropdown-item" onclick="copyLink('hold', 'dagtimer')">Kopier Link</button>
+                    <button class="dropdown-item" onclick="reportSection('Dagtimer')">Rapporter</button>
+                </div>
+                <h3>Dagtimer</h3>
+                <p><strong>Blid Yoga</strong></p>
+                <p>For seniorer og folk med specielle behov. Velegnet til kroppe der har brug for ekstra omsorg.</p>
+                <p style="margin-top: 20px;"><strong>Pilates</strong></p>
+                <p>I samarbejde med Gigtskolen. Fokus på core-styrke og balance.</p>
+            </div>
+
+            <div class="content-section">
+                <button class="menu-button" onclick="toggleMenu(event, 'menu-aftentimer')">⋮</button>
+                <div id="menu-aftentimer" class="dropdown-menu">
+                    <button class="dropdown-item" onclick="shareSection('Aftentimer')">Del</button>
+                    <button class="dropdown-item" onclick="saveSection('Aftentimer')">Gem</button>
+                    <button class="dropdown-item" onclick="copyLink('hold', 'aftentimer')">Kopier Link</button>
+                    <button class="dropdown-item" onclick="reportSection('Aftentimer')">Rapporter</button>
+                </div>
+                <h3>Aftentimer</h3>
+                <p><strong>Hatha Yoga</strong></p>
+                <p>Varieret form og intensitet. Forskellige lærere med forskellige tilgange. Elementer fra yin, restorativ og funktionel yoga. Grundig opvarmning, solhilsener, klassiske sekvenser.</p>
+            </div>
+
+            <div class="content-section">
+                <button class="menu-button" onclick="toggleMenu(event, 'menu-kendetegn')">⋮</button>
+                <div id="menu-kendetegn" class="dropdown-menu">
+                    <button class="dropdown-item" onclick="shareSection('Kendetegn')">Del</button>
+                    <button class="dropdown-item" onclick="saveSection('Kendetegn')">Gem</button>
+                    <button class="dropdown-item" onclick="copyLink('hold', 'kendetegn')">Kopier Link</button>
+                    <button class="dropdown-item" onclick="reportSection('Kendetegn')">Rapporter</button>
+                </div>
+                <h3>Kendetegn ved vores hold</h3>
+                <ul>
+                    <li>Små klasser - typisk 10 personer</li>
+                    <li>Personlig opmærksomhed og individuel tilpasning</li>
+                    <li>Hyggelige, smagfuldt indrettede rum</li>
+                    <li>Intim, personlig tilgang til yoga</li>
+                </ul>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Kontakt os for mere information</strong></p>
+                <p>
+                    <a href="mailto:info@yogarummetindreby.dk">info@yogarummetindreby.dk</a><br>
+                    <a href="tel:40585036">40 58 50 36</a>
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="back-button" onclick="navigateTo('home'); return false;">← Tilbage til forsiden</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- KURSER & WORKSHOPS SCREEN -->
+    <div id="kurser" class="screen">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 onclick="navigateTo('home')" style="cursor: pointer;">Yogarummet IndreBy</h1>
+                <p>Yoga i Dybden og temaworkshops</p>
+            </div>
+        </section>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">Kurser & Workshops</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="content-section">
+                <button class="menu-button" onclick="toggleMenu(event, 'menu-yoga-dybden')">⋮</button>
+                <div id="menu-yoga-dybden" class="dropdown-menu">
+                    <button class="dropdown-item" onclick="shareSection('Yoga i Dybden')">Del</button>
+                    <button class="dropdown-item" onclick="saveSection('Yoga i Dybden')">Gem</button>
+                    <button class="dropdown-item" onclick="copyLink('kurser', 'yoga-dybden')">Kopier Link</button>
+                    <button class="dropdown-item" onclick="reportSection('Yoga i Dybden')">Rapporter</button>
+                </div>
+                <h3>Yoga i Dybden</h3>
+                <p><strong>Tid:</strong> 4 fredage kl. 10-12</p>
+                <p><strong>For:</strong> Erfarne yogaudøvere der vil gå dybere</p>
+                <p><strong>Sammen med:</strong> Sussie Hayman Jensen</p>
+                <p><strong>Indhold:</strong> Grundig opvarmning, solhilsener, klassiske sekvenser, åndedrætsøvelser, Yoga Nidra, yin og restorativ yoga</p>
+                <p class="price">375 kr. pr. gang eller 1.450 kr. for hele forløbet</p>
+            </div>
+
+            <div class="content-section">
+                <button class="menu-button" onclick="toggleMenu(event, 'menu-efteraar')">⋮</button>
+                <div id="menu-efteraar" class="dropdown-menu">
+                    <button class="dropdown-item" onclick="shareSection('Efterårets Meridianer')">Del</button>
+                    <button class="dropdown-item" onclick="saveSection('Efterårets Meridianer')">Gem</button>
+                    <button class="dropdown-item" onclick="copyLink('kurser', 'efteraar')">Kopier Link</button>
+                    <button class="dropdown-item" onclick="reportSection('Efterårets Meridianer')">Rapporter</button>
+                </div>
+                <h3>Efterårets Meridianer</h3>
+                <p><strong>Fokus:</strong> Arbejde med efterårets meridianer (lunge og tyktarm) fra Traditionel Kinesisk Medicin</p>
+                <p><strong>Formål:</strong> Give slip og styrke åndedrættet</p>
+                <p><strong>Indhold:</strong> Blide stræk + restorative stillinger</p>
+                <p><strong>Varighed:</strong> 2,5 timer</p>
+                <p class="price">395 kr.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Vinterens Dybe Hvile</h3>
+                <p><strong>Fokus:</strong> Dyb hvile og ro til mørketiden</p>
+                <p><strong>Indhold:</strong> Yin yoga, restorative stillinger, klangskåle og vindspil, guidet lysmeditation (Tratak)</p>
+                <p><strong>Tid:</strong> 16:00-19:00 (3 timer)</p>
+                <p class="price">495 kr.</p>
+                <p style="margin-top: 15px; font-style: italic; color: var(--secondary);">
+                    I vinterens mørke har kroppen brug for dyb regenerering. Vi arbejder med nervesystemets balance og skaber rum for indre stilhed.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h3>Nuancer af Hvile - Uddannelse i Restorativ Yoga</h3>
+                <p><strong>For:</strong> Yogalærere der vil udvide kompetencer i blid yoga</p>
+                <p><strong>Varighed:</strong> 3-4 dage</p>
+                <p><strong>Indhold:</strong> Teori + praksis, inkluderer Hanneloas bog "Yoga i hvile"</p>
+                <p class="price">5.000 kr. (3 dage) / 5.500 kr. (4 dage inkl. kursusbevis)</p>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Tilmelding og information</strong></p>
+                <p>
+                    <a href="mailto:info@yogarummetindreby.dk">info@yogarummetindreby.dk</a><br>
+                    <a href="tel:40585036">40 58 50 36</a>
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="back-button" onclick="navigateTo('home'); return false;">← Tilbage til forsiden</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- RETREATS SCREEN -->
+    <div id="retreats" class="screen">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 onclick="navigateTo('home')" style="cursor: pointer;">Yogarummet IndreBy</h1>
+                <p>Retreats i naturens ro</p>
+            </div>
+        </section>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">Retreats</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="content-section">
+                <h3>Forårsretreat på Kirsebærgården</h3>
+                <p><strong>Lokation:</strong> Kirsebærgården, Nakke-halvø i Odsherred (ved Hov Vig fuglereservat)</p>
+                <p><strong>Afstand:</strong> Ca. 1 times kørsel fra København</p>
+                <p><strong>Varighed:</strong> Weekend (fredag-søndag)</p>
+                <p><strong>Omgivelser:</strong> Storslået natur, mulighed for gåture, bål</p>
+                <p><strong>Indhold:</strong> Vekslen mellem yin, restorativ og blid hatha yoga, meditation, pranayama, yoga nidra</p>
+                <p style="margin-top: 15px; font-style: italic; color: var(--secondary);">
+                    "Weekenden er din" - du bestemmer selv dit niveau af deltagelse. Fællesskab eller tilbagetrækning efter behov.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h3>Urban Retreat - Sommerkurser i København</h3>
+                <p><strong>Varighed:</strong> 5 dage i træk (mandag-fredag)</p>
+                <p><strong>Tid:</strong> 10:00-13:00</p>
+                <p><strong>Lokation:</strong> I København (tidligere Kronprinsessegade)</p>
+                <p class="price">1.850 kr.</p>
+                <p style="margin-top: 15px;">
+                    Intensiv yoga-praksis midt i byen. En dyb retreat-oplevelse uden at rejse.
+                </p>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Tilmelding og information</strong></p>
+                <p>
+                    <a href="mailto:info@yogarummetindreby.dk">info@yogarummetindreby.dk</a><br>
+                    <a href="tel:40585036">40 58 50 36</a>
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="back-button" onclick="navigateTo('home'); return false;">← Tilbage til forsiden</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ØVELSESBIBLIOTEK SCREEN -->
+    <div id="bibliotek" class="screen">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 onclick="navigateTo('home')" style="cursor: pointer;">Yogarummet IndreBy</h1>
+                <p>Yin, Restorativ, Hatha, Pranayama</p>
+            </div>
+        </section>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">Øvelsesbibliotek</h2>
+                <div class="divider"></div>
+                <p style="text-align: center; line-height: 1.8; color: var(--secondary); margin-top: 20px;">
+                    Hanneloas tilgang til yoga integrerer Traditionel Kinesisk Medicin (TCM), årstidernes energier og nervesystemets visdom. Her finder du introduktion til de forskellige yoga-former samt udvalgte øvelser.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h3>Yin Yoga</h3>
+                <p>Langsomme, dybe stræk der giver tid til at mærke efter. Vi arbejder med meridianer og bindevæv, følger årstidernes energi og læner os ind i stilheden. Stillinger holdes 3-5 minutter.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Restorativ Yoga</h3>
+                <p>Støttede, hvilende stillinger hvor kroppen får lov til at hvile dybt. Med bolstre, tæpper og blokke skaber vi en tryg ramme for nervesystemets healing. Klangskåle og vindspil holder os selskab. Parasympatisk aktivering - kroppen går i 'rest and digest' mode.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Hatha Yoga</h3>
+                <p>Klassisk yoga med grundig opvarmning, solhilsener og velkendte sekvenser. Vi finder balance mellem styrke og smidighed, bevægelse og ro.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Pranayama</h3>
+                <p>Åndedrætsteknikker der styrker forbindelsen til livsånden. Fra vejrtrækningens rytme finder vi vej til indre stilhed. Ujjayi (ocean breath) skaber indre varme og beroligelse.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Yoga Nidra</h3>
+                <p>Guidet dyb afslapning hvor du hviler mellem vågen og søvn. Kroppen ligger stille mens bevidstheden vandrer gennem indre landskaber.</p>
+            </div>
+
+            <div class="content-section">
+                <h3>Meditation</h3>
+                <p>Øvelser i nærvær og stilhed. Fra lysmeditation (Tratak) til vejrtrækningsopmærksomhed - find din vej hjem til ro.</p>
+            </div>
+
+            <div class="exercise-divider">✦ ✦ ✦</div>
+
+            <h2 style="text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--text); margin: 40px 0;">Udvalgte Øvelser</h2>
+
+            <!-- EXERCISE 1: BUTTERFLY -->
+            <div class="exercise">
+                <button class="menu-button" onclick="toggleMenu(event, 'menu-butterfly')">⋮</button>
+                <div id="menu-butterfly" class="dropdown-menu">
+                    <button class="dropdown-item" onclick="shareSection('Butterfly Øvelse')">Del</button>
+                    <button class="dropdown-item" onclick="saveSection('Butterfly Øvelse')">Gem</button>
+                    <button class="dropdown-item" onclick="copyLink('bibliotek', 'butterfly')">Kopier Link</button>
+                    <button class="dropdown-item" onclick="reportSection('Butterfly Øvelse')">Rapporter</button>
+                </div>
+                <h3>Butterfly (Baddha Konasana - Yin Version)</h3>
+                <div class="exercise-meta">
+                    <span><strong>Kategori:</strong> Yin Yoga</span> |
+                    <span><strong>Varighed:</strong> 3-5 minutter</span> |
+                    <span><strong>Niveau:</strong> Alle</span> |
+                    <span><strong>Fokus:</strong> Hofte, inderlår, nyre- og blæremeridianen</span> |
+                    <span><strong>Årstid:</strong> Vinter (Vand-element)</span>
+                </div>
+
+                <h4>Indledning</h4>
+                <p>Butterfly er en blid åbner af hofterne der inviterer til dyb overgiv­else. I yin-traditionen arbejder vi med nyre- og blæremeridianen som forbindes med livskraft og viljestyrke. Om vinteren, når vandets element er dominerende, kan vi bruge denne stilling til at nære vores dybeste reserver.</p>
+
+                <h4>Rekvisitter</h4>
+                <p>Bolster eller puder, evt. blokke under knæ</p>
+
+                <h4>Instruktion</h4>
+                <ol>
+                    <li>Sid på din måtte med benene strakte frem</li>
+                    <li>Bøj knæene og træk fødderne ind mod dig</li>
+                    <li>Lad fodsålerne mødes, og lad knæene falde ud til siderne</li>
+                    <li>Placer evt. blokke under knæene for støtte</li>
+                    <li>Med indånding, ret ryggen og forlæng rygsøjlen</li>
+                    <li>Med udånding, begynd at folde dig frem fra hoften</li>
+                    <li>Lad overkroppen hvile - måske over en bolster</li>
+                    <li>Armene kan hvile langs siden eller strækkes frem</li>
+                    <li>Hoved og nakke er afslappede</li>
+                    <li>Luk øjnene og ånd roligt</li>
+                </ol>
+
+                <h4>I stillingen</h4>
+                <p>Dette er ikke om at nå langt frem - det er om at finde din kant. Mærk stræk, men aldrig smerte. Med hver udånding, overgiv lidt mere vægt. Lad skuldrene falde tungt. Ansigtet er blødt, kæben løs. Forbliv fuldstændig stille.</p>
+
+                <h4>Anatomi</h4>
+                <p>Butterfly strækker adduktorerne (inderlårene), åbner hoftekapslen og masserer blidt de indre organer. Fascia omkring bækkenet får tid til at slippe. Der kan opstå følelser eller minder - hofterne gemmer meget.</p>
+
+                <h4>TCM Perspektiv</h4>
+                <p>Nyremeridianen løber langs indersiden af benene og forbindes med vores dybeste energireserver (Jing). Blæremeridianen langs rygsiden handler om viljestyrke og retning. Om vinteren nærer vi disse meridianer for at bygge kraft til forårets vækst.</p>
+
+                <h4>Nervesystem</h4>
+                <p>Den fremoverbuede stilling signalerer sikkerhed til nervesystemet. Parasympatisk aktivering øges. Med stillhed og tid går kroppen i healing-mode.</p>
+
+                <h4>Tid</h4>
+                <p>Hold stillingen i 3-5 minutter. Brug timer med blid klokke.</p>
+
+                <h4>At komme ud</h4>
+                <p>Med indånding, brug hænderne til langsomt at rejse dig op. Stræk benene frem og mærk eftervirkningerne. Giv dig selv 30 sekunder til integration.</p>
+
+                <h4>Kontraindikationer</h4>
+                <p>Ved diskusprolaps i lænden: Brug ekstra højde under numsen og gå ikke dybt frem. Ved knæskader: Støt knæene godt med blokke.</p>
+            </div>
+
+            <!-- EXERCISE 2: SUPPORTED CHILD'S POSE -->
+            <div class="exercise">
+                <h3>Supported Child's Pose (Balasana - Restorativ Version)</h3>
+                <div class="exercise-meta">
+                    <span><strong>Kategori:</strong> Restorativ Yoga</span> |
+                    <span><strong>Varighed:</strong> 5-10 minutter</span> |
+                    <span><strong>Niveau:</strong> Alle</span> |
+                    <span><strong>Fokus:</strong> Ryg, hofte, nervesystem</span> |
+                    <span><strong>Klange:</strong> Klangskåle, vindspil</span>
+                </div>
+
+                <h4>Indledning</h4>
+                <p>Child's pose er hjemkomsten. I den restorative version bruger vi en bolster til at understøtte kroppen fuldstændigt, så al anstrengelse kan slippe. Dette er dybeste hvile i barnets trygge stilling.</p>
+
+                <h4>Rekvisitter</h4>
+                <p>Bolster, 2-3 tæpper, øjenpude</p>
+
+                <h4>Forberedelse</h4>
+                <ol>
+                    <li>Placer en bolster på måtten i længderetningen</li>
+                    <li>Læg et sammenfoldet tæppe øverst på bolsteren (til panden)</li>
+                    <li>Hav ekstra tæpper ved siden af til støtte</li>
+                </ol>
+
+                <h4>Instruktion</h4>
+                <ol>
+                    <li>Knæl foran bolsteren med knæene bredt fra hinanden</li>
+                    <li>Lad storetæerne mødes bag dig</li>
+                    <li>Med udånding, fold kroppen frem over bolsteren</li>
+                    <li>Overkroppen hviler fuldstændigt</li>
+                    <li>Drej hovedet til den ene side (skift halvvejs)</li>
+                    <li>Armene kan hvile langs siden eller favne bolsteren</li>
+                    <li>Placer øjenpude over øjnene hvis du vil</li>
+                    <li>Træk evt. et tæppe op over dig</li>
+                    <li>Mærk tyngden synke ned i jorden</li>
+                </ol>
+
+                <h4>I stillingen</h4>
+                <p>Hver udånding er en dybere overgiv­else til jordens bærekraft. Mærk hvordan bolsteren modtager dig fuldstændigt. Ingen anstrengelse - kun hvile. Hvis tanker kommer, mærk vejrtrækningen i ryggen. Ryggen hæver sig en smule ved indånding, sænker ved udånding. Lad rummet bære dig.</p>
+
+                <h4>Anatomi</h4>
+                <p>Hoftefleksorer får et blidt stræk. Ryggen runderes og får en dejlig massage. Alle indre organer masseres blidt af vejrtrækningen. Hjertet er lavere end hovedet hvilket fremmer ro.</p>
+
+                <h4>Nervesystem</h4>
+                <p>Dette er dyb parasympatisk aktivering. Kroppen går i "rest and digest". Spændinger slipper lag for lag. Denne stilling er særlig helbredende ved stress, udmattelse eller følelsesmæssig uro.</p>
+
+                <h4>Med klange</h4>
+                <p>Hvis du bruger klangskåle eller vindspil, lad lyden omgive dig. Vibrationerne hjælper nervesystemet dybere i ro. Du behøver ikke gøre noget - bare modtage.</p>
+
+                <h4>Tid</h4>
+                <p>Start med 5 minutter. Kan udvides til 10-15 minutter. Brug timer.</p>
+
+                <h4>At komme ud</h4>
+                <p>Meget langsomt. Brug hænderne til at skubbe dig let op. Sid lidt før du rejser dig. Giv kroppen tid til overgangen.</p>
+
+                <h4>Variation</h4>
+                <p>Ved menstruation eller graviditet: Brug flere tæpper så der er højde under maven. Ved knæ-ømhed: Fold tæppe under knæene.</p>
+
+                <h4>Kontraindikationer</h4>
+                <p>Ved højt blodtryk: Brug ekstra højde så hovedet ikke er lavere end hjertet. Ved sent i graviditet: Bed om vejledning.</p>
+            </div>
+
+            <!-- EXERCISE 3: UJJAYI PRANAYAMA -->
+            <div class="exercise">
+                <h3>Ujjayi Pranayama (Ocean Breath)</h3>
+                <div class="exercise-meta">
+                    <span><strong>Kategori:</strong> Pranayama</span> |
+                    <span><strong>Varighed:</strong> 5-10 minutter</span> |
+                    <span><strong>Niveau:</strong> Let øvede</span> |
+                    <span><strong>Fokus:</strong> Nervesystem, koncentration, indre varme</span> |
+                    <span><strong>Rekvisitter:</strong> Ingen (eller pude til sidde på)</span>
+                </div>
+
+                <h4>Indledning</h4>
+                <p>Ujjayi betyder "sejrrig" eller "opløftende". Denne åndedrætsteknik skaber en blid snorken-lyd ved at indsnævre svælget let. Lyden minder om havets bølger eller vinden i træerne - derfor kaldes den også Ocean Breath.</p>
+
+                <h4>Forberedelse</h4>
+                <p>Find en behagelig siddeposition - på pude eller stol. Ryggen er ret men ikke anspændt. Hænder hviler i skødet eller på knæene. Luk øjnene eller sænk blikket.</p>
+
+                <h4>Læring af teknikken</h4>
+                <ol>
+                    <li>Åbn munden og udånd med en "haaaaa"-lyd (som når du dugger et spejl)</li>
+                    <li>Føl hvordan luften passerer gennem struben</li>
+                    <li>Nu, luk munden og lav den samme snævring i struben, men ånd gennem næsen</li>
+                    <li>Du skulle gerne høre en blid, hvislende lyd både ved ind- og udånding</li>
+                    <li>Lyden kommer fra struben, ikke fra næsen</li>
+                </ol>
+
+                <h4>Instruktion - Fuld praksis</h4>
+                <ol>
+                    <li>Tag et par normale vejrtrækninger</li>
+                    <li>Begynd ujjayi: Indånd langsomt gennem næsen med den blide snævring</li>
+                    <li>Udånd langsomt gennem næsen, samme snævring</li>
+                    <li>Find en rytme der føles behagelig - typisk 4-6 tælletider ind, 4-6 tælletider ud</li>
+                    <li>Lyt til lyden - lad den guide dig</li>
+                    <li>Vejrtrækningen er dyb men ikke forceret</li>
+                    <li>Fortsæt i 5-10 minutter</li>
+                </ol>
+
+                <h4>Opmærksomhedspunkter</h4>
+                <p>Lyden skal være blid, som havets fjerne brusen. Ikke for højt eller anstrengt. Følg lyden som et mantra. Mærk hvordan vejrtrækningen varmer kroppen indefra. Nervøse tanker stilner af når du lytter til lyden.</p>
+
+                <h4>Virkning</h4>
+                <p>Ujjayi skaber indre varme (tapas), styrker koncentration og berolig­er sindet. Den lange, kontrollerede vejrtrækning signalerer sikkerhed til nervesystemet. Perfekt før meditation eller som forberedelse til yoga-praksis.</p>
+
+                <h4>Nervesystem</h4>
+                <p>Den forlængede udånding aktiverer parasympatiske nervesystem (vagusnervén). Du kommer i en lidt meditativ tilstand - vågen men rolig.</p>
+
+                <h4>Integration i praksis</h4>
+                <p>Ujjayi bruges ofte gennem hele hatha yoga-praksis. Det hjælper dig med at holde fokus og rytme i bevægelserne. Prøv det næste gang du laver solhilsener.</p>
+
+                <h4>Tid</h4>
+                <p>Start med 5 minutter dagligt. Byg gradvist op til 10-15 minutter.</p>
+
+                <h4>Kontraindikationer</h4>
+                <p>Ved astma eller åndedrætsbesvær: Konsulter lærer først. Gå blidt til værks. Ved angst: Hvis teknikken skaber mere uro, så stop og vend tilbage til normal vejrtrækning.</p>
+            </div>
+
+            <div class="exercise-divider">✦ ✦ ✦</div>
+
+            <div class="content-section" style="background: linear-gradient(135deg, rgba(201, 184, 150, 0.1), rgba(139, 115, 85, 0.1)); border-left: 4px solid var(--primary);">
+                <h3>Hanneloas Filosofi</h3>
+                <p style="font-style: italic;">
+                    "Yoga handler ikke om at præstere eller nå et mål. Det er en invitation til at mærke efter - hvordan står det til lige nu? Gennem blid opmærksomhed på kroppen, vejrtrækningen og nervesystemet skaber vi rum for den iboende visdom der altid er til stede. Min tilgang integrerer årstidernes cyklusser fra TCM, så vi arbejder MED naturens rytmer, ikke imod dem."
+                </p>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Kontakt os</strong></p>
+                <p>
+                    <a href="mailto:info@yogarummetindreby.dk">info@yogarummetindreby.dk</a><br>
+                    <a href="tel:40585036">40 58 50 36</a>
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="back-button" onclick="navigateTo('home'); return false;">← Tilbage til forsiden</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- OM SCREEN -->
+    <div id="om" class="screen">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 onclick="navigateTo('home')" style="cursor: pointer;">Yogarummet IndreBy</h1>
+                <p>25 års erfaring med yoga, TCM og nervesystemets visdom</p>
+            </div>
+        </section>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h2 class="page-title">Om Hanneloa & Yogarummet IndreBy</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="content-section">
+                <h3>Hanneloa Rose Jørgensen</h3>
+                <p>Med over 25 års erfaring som yogalærer har Hanneloa guidet tusindvis af elever gennem yoga-praksis med en blid, opmærksom tilgang. Hendes undervisning er rodfæstet i klassisk yoga-tradition, men integrerer også indsigter fra Traditionel Kinesisk Medicin (TCM) og moderne nervesystemforståelse.</p>
+
+                <p style="margin-top: 15px;">Hanneloa er certificeret i:</p>
+                <ul>
+                    <li>Yin Yoga (Paul Grilley & Sarah Powers tradition)</li>
+                    <li>Restorativ Yoga (Judith Lasater metode)</li>
+                    <li>Hatha Yoga (klassisk indien tradition)</li>
+                    <li>Yoga Nidra</li>
+                    <li>Traditionel Kinesisk Medicin meridianlære</li>
+                    <li>Polyvagal teori og nervesystem-informeret yoga</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Undervisningsfilosofi</h3>
+                <p style="font-style: italic; color: var(--primary);">
+                    "Yoga er ikke præstation - det er en invitation til at mærke efter."
+                </p>
+                <p style="margin-top: 15px;">
+                    Hanneloas tilgang er præget af dyb respekt for kroppens visdom. Hun integrerer TCM's forståelse af årstidernes energier med moderne nervesystemvidenskab, så hver praksis støtter både kroppens naturlige cyklusser og det parasympatiske nervesystems healing.
+                </p>
+                <p style="margin-top: 15px;">
+                    I hendes timer er der plads til både bevægelse og stilhed, anstrengelse og overgiv­else. Med grundig opvarmning, præcise instruer, og altid et blik for den enkelte elevs behov, skaber hun trygge rum hvor transformation kan ske.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h3>Specialer</h3>
+                <ul>
+                    <li><strong>Yin Yoga:</strong> Dybe, langsomme stræk der arbejder med meridianer og bindevæv</li>
+                    <li><strong>Restorativ Yoga:</strong> Støttede hvilestillinger for nervesystemets healing</li>
+                    <li><strong>Hatha Yoga:</strong> Klassisk yoga med balance mellem styrke og smidighed</li>
+                    <li><strong>Yoga Nidra:</strong> Guidet dyb afslapning</li>
+                    <li><strong>Pranayama:</strong> Åndedrætsteknikker for indre balance</li>
+                    <li><strong>TCM & Yoga:</strong> Integration af meridianlære og årstidernes energier</li>
+                    <li><strong>Nervesystem-informeret yoga:</strong> Praksis der støtter polyvagal sundhed</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h3>Yogarummet IndreBy</h3>
+                <p><strong>Lokation:</strong> Gothersgade 137 kld., 1123 København K</p>
+                <p>Mellem Torvehallerne, Botanisk Have og Nørreport Station - midt i hjerte af København.</p>
+
+                <p style="margin-top: 15px;">
+                    Yogarummet IndreBy er et intimt, smagfuldt indrettet yogastudio hvor små klasser (typisk 10 personer) sikrer personlig opmærksomhed. Rummene er hyggelige og indbydende, med varme farver og blød belysning der skaber en tryg atmosfære for praksis.
+                </p>
+
+                <p style="margin-top: 15px;">
+                    Vi tilbyder ugentlige hold, kurser, workshops og retreats for alle niveauer. Fra seniorer og folk med specielle behov til erfarne yogaudøvere der vil gå dybere.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h3>YouTube Kanal</h3>
+                <p>Hanneloa deler guidede øvelser og undervisning på YouTube. Find videoer om:</p>
+                <ul>
+                    <li>Restorativ yoga sekvenser</li>
+                    <li>Yin yoga praksis for forskellige årstider</li>
+                    <li>Pranayama instruktioner</li>
+                    <li>Yoga Nidra guidninger</li>
+                    <li>Mini-workshops om TCM og yoga</li>
+                </ul>
+                <p style="margin-top: 15px;">
+                    <a href="https://www.youtube.com/@HanneloaYoga" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600;">→ Besøg Hanneloas YouTube kanal</a>
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h3>Firmaevents & Workshops</h3>
+                <p>Hanneloa tilbyder skræddersyede yoga-oplevelser til virksomheder:</p>
+                <ul>
+                    <li>Stresshåndtering og mindfulness workshops</li>
+                    <li>Yogapauser i arbejdstiden</li>
+                    <li>Teambuilding gennem yoga</li>
+                    <li>Foredrag om nervesystem og velvære</li>
+                    <li>Restorativ yoga for udbrændthedsprofylakse</li>
+                </ul>
+                <p style="margin-top: 15px; font-style: italic; color: var(--secondary);">
+                    Kontakt os for at høre mere om muligheder og priser.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h3>Leje af Rum</h3>
+                <p>Yogarummet IndreBy's smukke lokaler kan lejes til:</p>
+                <ul>
+                    <li>Yoga workshops</li>
+                    <li>Meditation og mindfulness kurser</li>
+                    <li>Mindre events og retreats</li>
+                    <li>Terapeutisk arbejde</li>
+                    <li>Kropsbevidst gruppearbejde</li>
+                </ul>
+                <p style="margin-top: 15px;">
+                    Rummene er fuldt udstyrede med yogamåtter, bolstre, tæpper, blokke og andre rekvisitter.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h3>Andre Behandlinger</h3>
+                <p>Ud over yoga tilbyder Yogarummet IndreBy:</p>
+
+                <p style="margin-top: 15px;"><strong>Rolfing (Strukturel Integration):</strong></p>
+                <p>Dyb fascia-behandling der arbejder med kroppens strukturelle balance. Velegnet til kroniske spændinger, holdningsproblemer og smerter.</p>
+
+                <p style="margin-top: 15px;"><strong>Grinberg Method:</strong></p>
+                <p>Kropsbevidst metode der lærer dig at stoppe mønstre af smerte og spænding. Gennem berøring og instruktion lærer du at slippe automatiske reaktioner i kroppen.</p>
+
+                <p style="margin-top: 15px; font-style: italic; color: var(--secondary);">
+                    Begge metoder kan kombineres med yoga-praksis for en helhedsorienteret tilgang til velvære.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h3>Hanneloas Bog</h3>
+                <p><strong>"Yoga i hvile"</strong> - En dybdegående guide til restorativ yoga</p>
+                <p style="margin-top: 10px;">
+                    Bogen indeholder teori om nervesystemet, TCM-perspektiver og detaljerede instruktioner til restorative stillinger. Illustreret med fotos og anatomiske forklaringer.
+                </p>
+                <p style="margin-top: 10px; font-style: italic; color: var(--secondary);">
+                    Kan købes på studieet eller gennem online boghandlere.
+                </p>
+            </div>
+
+            <div class="contact-info">
+                <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 20px;">Kontakt</h3>
+                <p><strong>Hanneloa Rose Jørgensen</strong></p>
+                <p><strong>Yogarummet IndreBy</strong></p>
+                <p style="margin-top: 15px;">
+                    Gothersgade 137 kld.<br>
+                    1123 København K
+                </p>
+                <p style="margin-top: 15px;">
+                    <strong>Email:</strong> <a href="mailto:info@yogarummetindreby.dk">info@yogarummetindreby.dk</a><br>
+                    <strong>Telefon:</strong> <a href="tel:40585036">40 58 50 36</a>
+                </p>
+                <p style="margin-top: 15px;">
+                    <strong>Åbningstider:</strong><br>
+                    Se holdplan for aktuelle timer<br>
+                    Kontakt os for privattimer og events
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="back-button" onclick="navigateTo('home'); return false;">← Tilbage til forsiden</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#hjem" class="nav-item active">
+            <div class="nav-label">Hjem</div>
+        </a>
+        <a href="#hold" class="nav-item">
+            <div class="nav-label">Hold</div>
+        </a>
+        <a href="#kurser" class="nav-item">
+            <div class="nav-label">Kurser</div>
+        </a>
+        <a href="#om" class="nav-item">
+            <div class="nav-label">Om</div>
+        </a>
+    </nav>
+
+    <script>
+        // Navigation function
+        function navigateTo(section) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            // Show selected screen
+            const targetScreen = document.getElementById(section);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            // Update nav active state
+            updateNavigation(section);
+        }
+
+        // Update navigation active state
+        function updateNavigation(section) {
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+
+            const navMap = {
+                'home': 'hjem',
+                'hold': 'hold',
+                'kurser': 'kurser',
+                'retreats': 'kurser',
+                'bibliotek': 'kurser',
+                'om': 'om'
+            };
+
+            const navKey = navMap[section] || 'hjem';
+            const activeNav = document.querySelector(`a[href="#${navKey}"]`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+        }
+
+        // Active nav item handling
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href').substring(1);
+
+                if (href === 'hjem') {
+                    navigateTo('home');
+                } else if (href === 'hold') {
+                    navigateTo('hold');
+                } else if (href === 'kurser') {
+                    navigateTo('kurser');
+                } else if (href === 'om') {
+                    navigateTo('om');
+                }
+            });
+        });
+
+        // Three-dot menu functionality
+        function toggleMenu(event, menuId) {
+            event.stopPropagation();
+
+            // Close all other menus
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== menuId) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // Toggle the clicked menu
+            const menu = document.getElementById(menuId);
+            if (menu) {
+                menu.classList.toggle('show');
+            }
+        }
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.remove('show');
+            });
+        });
+
+        // Share section
+        function shareSection(sectionName) {
+            if (navigator.share) {
+                navigator.share({
+                    title: `Yogarummet IndreBy - ${sectionName}`,
+                    text: `Tjek dette ud: ${sectionName}`,
+                    url: window.location.href
+                }).catch(err => console.log('Error sharing:', err));
+            } else {
+                alert('Del denne side ved at kopiere URL\'en fra din browser.');
+            }
+        }
+
+        // Save section
+        function saveSection(sectionName) {
+            // In a real app, this would save to local storage or a backend
+            alert(`${sectionName} er blevet gemt!`);
+        }
+
+        // Copy link
+        function copyLink(page, section) {
+            const url = `${window.location.origin}${window.location.pathname}#${page}-${section}`;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link kopieret til udklipsholder!');
+            }).catch(err => {
+                console.log('Error copying link:', err);
+                alert('Kunne ikke kopiere link.');
+            });
+        }
+
+        // Report section
+        function reportSection(sectionName) {
+            // In a real app, this would open a report form
+            alert(`Rapporter ${sectionName}: Tak for din feedback. Vi vil gennemgå din rapport.`);
+        }
+
+        // Card animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', function() {
+            navigateTo('home');
+        });
+    </script>
+</body>
+</html>
