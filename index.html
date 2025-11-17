@@ -257,6 +257,23 @@
                 margin-top: -40px;
             }
 
+/* Landscape mode fix for iPhone */
+@media (orientation: landscape) and (max-height: 500px) {
+    .hero {
+        height: 50vh;
+        min-height: 300px;
+        background-size: contain;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+}
+            
             .container {
                 padding: 30px 16px;
             }
